@@ -125,11 +125,10 @@ export class NgrxCli {
 	}
 
 	public generateUtil = async (loc: IPath) => {
-		// create an IFiles array including file names and contents
 		var files: IFiles[] = [
 			{
 				name: path.join(loc.dirPath, 'util.ts'),
-				content: this.fc.utilContent()
+				content: this.fc.utilContent
 			}
 		];
 
