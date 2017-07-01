@@ -4,10 +4,6 @@ import { ExtensionContext, commands, window, workspace } from 'vscode';
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-	console.log(
-		'Congratulations, your extension "angular-ngrx" is now active!'
-	);
-
 	const ngrxCli = new NgrxCli();
 
 	const commandsMap = {
