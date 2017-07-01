@@ -1,36 +1,66 @@
 {
-    "name": "angular-ngrx",
-    "displayName": "vscode-angular-ngrx",
-    "description": "ngrx file and snippets generator",
-    "version": "0.0.1",
-    "publisher": "loiane",
-    "engines": {
-        "vscode": "^1.12.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:extension.sayHello"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
-    }
+	"name": "angular-ngrx",
+	"displayName": "Angular Ngrx",
+	"description": "Quickly scaffold ngrx file templates snippets",
+	"version": "0.0.1",
+	"publisher": "loiane",
+	"engines": {
+		"vscode": "^1.12.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/loiane/vscode-angular-ngrx"
+	},
+	"bugs": {
+		"url": "https://github.com/loiane/vscode-angular-ngrx/issues"
+	},
+	"keywords": [
+		"Angular",
+		"Angular 2",
+		"Angular 4",
+		"ngrx",
+		"redux",
+		"TypeScript",
+		"Templates"
+	],
+	"categories": ["Other", "Languages", "Snippets"],
+	"activationEvents": ["*"],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.addNgRxUtil",
+				"title": "Generate ngrx util.ts"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "",
+					"command": "extension.addNgRxUtil",
+					"group": "AngularNgRx"
+				}
+			]
+		},
+		"snippets": [
+			{
+				"language": "typescript",
+				"path": "./snippets/ngrx/util.json"
+			}
+		]
+	},
+	"scripts": {
+		"templates": "cp -r ./src/templates/ ./templates/",
+		"vscode:prepublish": "tsc -p ./ | npm run templates",
+		"compile": "tsc -watch -p ./ | npm run templates",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0",
+		"mocha": "^2.3.3",
+		"@types/node": "^6.0.40",
+		"@types/mocha": "^2.2.32"
+	}
 }
