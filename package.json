@@ -29,12 +29,21 @@
 	"contributes": {
 		"commands": [
 			{
+				"command": "extension.addNgRxFeatureStore",
+				"title": "Generate ngrx feature store"
+			},
+			{
 				"command": "extension.addNgRxUtil",
 				"title": "Generate ngrx util.ts"
 			}
 		],
 		"menus": {
 			"explorer/context": [
+				{
+					"when": "",
+					"command": "extension.addNgRxFeatureStore",
+					"group": "AngularNgRx"
+				},
 				{
 					"when": "",
 					"command": "extension.addNgRxUtil",

@@ -11,6 +11,11 @@ export function activate(context: vscode.ExtensionContext) {
 			template: 'util',
 			fileName: 'util.ts',
 			callback: ngrxCli.generateUtil
+		},
+		'extension.addNgRxFeatureStore': {
+			template: 'feature store',
+			fileName: 'feature-name',
+			callback: ngrxCli.generateFeatureStore
 		}
 	};
 

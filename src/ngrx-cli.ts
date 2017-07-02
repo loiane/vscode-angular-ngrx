@@ -77,7 +77,7 @@ export class NgrxCli {
 	}
 
 	// Create the new folder
-	private createFolder(loc: IPath): Promise<IPath> {
+	public createFolder(loc: IPath): Promise<IPath> {
 		return new Promise<IPath>((resolve, reject) => {
 			if (loc.dirName) {
 				fs.exists(loc.dirPath, exists => {
@@ -94,7 +94,7 @@ export class NgrxCli {
 		});
 	}
 
-	private writeFiles(files: IFiles[]): Promise<string[]> {
+	public writeFiles(files: IFiles[]): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
 			var errors: string[] = [];
 			files.forEach(file => {
@@ -109,7 +109,7 @@ export class NgrxCli {
 	}
 
 	// Get file contents and create the new files in the folder
-	private createFiles(loc: IPath, files: IFiles[]): Promise<string> {
+	public createFiles(loc: IPath, files: IFiles[]): Promise<string> {
 		return new Promise<string>((resolve, reject) => {
 			// write files
 			this.writeFiles(files).then(errors => {
@@ -124,14 +124,50 @@ export class NgrxCli {
 		});
 	}
 
-	public generateUtil = async (loc: IPath) => {
+	public generateUtil = async (loc?: IPath) => {
+		loc.fileName = 'util';
+		loc.dirName = 'store';
+		loc.dirPath = path.join(loc.dirPath, loc.dirName);
+
 		var files: IFiles[] = [
 			{
-				name: path.join(loc.dirPath, 'util.ts'),
-				content: this.fc.utilContent
+				name: path.join(loc.dirPath, `${loc.fileName}.ts`),
+				content: this.fc.utilContent()
 			}
 		];
 
+		await this.createFolder(loc);
+		await this.createFiles(loc, files);
+	};
+
+	public generateFeatureStore = async (loc?: IPath) => {
+		loc.dirName = 'store';
+		loc.dirPath = path.join(loc.dirPath, loc.dirName);
+
+		var files: IFiles[] = [
+			{
+				name: path.join(loc.dirPath, `${loc.fileName}.actions.ts`),
+				content: this.fc.featureStateContent(loc.fileName)
+			},
+			{
+				name: path.join(loc.dirPath, `${loc.fileName}.state.ts`),
+				content: this.fc.featureStateContent(loc.fileName)
+			},
+			{
+				name: path.join(loc.dirPath, `${loc.fileName}.reducer.ts`),
+				content: this.fc.featureStateContent(loc.fileName)
+			},
+			{
+				name: path.join(loc.dirPath, `${loc.fileName}.effects.ts`),
+				content: this.fc.featureStateContent(loc.fileName)
+			},
+			{
+				name: path.join(loc.dirPath, `${loc.fileName}.store.service.ts`),
+				content: this.fc.featureStateContent(loc.fileName)
+			}
+		];
+
+		await this.createFolder(loc);
 		await this.createFiles(loc, files);
 	};
 }
