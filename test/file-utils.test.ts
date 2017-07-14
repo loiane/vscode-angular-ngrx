@@ -57,7 +57,7 @@ suite('FileUtils Tests', () => {
 			);
 		});
 
-		test('should create the files', done => {
+		test('should create a folder and file', done => {
 			fileUtils.createFolder(testPath).then(pathResolved => {
 				fileUtils
 					.createFiles(pathResolved, fileNames)
