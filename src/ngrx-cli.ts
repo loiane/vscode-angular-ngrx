@@ -10,6 +10,8 @@ export class NgrxCli {
 	private fc = new FileContents();
 	private fileUtils = new FileUtils();
 
+	private readonly DIR_NAME = 'store';
+
 	public showFileNameDialog(args, type, defaultTypeName): Promise<IPath> {
 		return new Promise((resolve, reject) => {
 			let clickedFolderPath: string;
@@ -80,7 +82,7 @@ export class NgrxCli {
 
 	public generateUtil = async (loc?: IPath) => {
 		loc.fileName = 'util';
-		loc.dirName = 'store';
+		loc.dirName = this.DIR_NAME;
 		loc.dirPath = path.join(loc.dirPath, loc.dirName);
 
 		var files: IFiles[] = [
@@ -95,7 +97,7 @@ export class NgrxCli {
 	};
 
 	public generateFeatureStore = async (loc?: IPath) => {
-		loc.dirName = 'store';
+		loc.dirName = this.DIR_NAME;
 		loc.dirPath = path.join(loc.dirPath, loc.dirName);
 
 		var files: IFiles[] = [
