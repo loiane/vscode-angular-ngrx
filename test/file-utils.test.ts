@@ -9,88 +9,88 @@ import * as path from 'path';
 import * as rimraf from 'rimraf';
 
 const testPath: IPath = {
-	fileName: 'util.ts',
-	dirName: 'store',
-	dirPath: path.join(__dirname, 'store')
+  fileName: 'util.ts',
+  dirName: 'store',
+  dirPath: path.join(__dirname, 'store')
 };
-const fileNames: IFiles[] = [{
-	name: path.join(testPath.dirPath, testPath.fileName),
-	content: 'let myVar = 1;'
-}];
+const fileNames: IFiles[] = [
+  {
+    name: path.join(testPath.dirPath, testPath.fileName),
+    content: 'let myVar = 1;'
+  }
+];
 
 suite('FileUtils Tests', () => {
-	suite('generating files command', () => {
-		suiteTeardown(done => {
-			checkIfTestFolderExistsAndDelete(done);
-		});
+  suite('generating files command', () => {
+    suiteTeardown(done => {
+      checkIfTestFolderExistsAndDelete(done);
+    });
 
-		const fileUtils = new FileUtils();
-		
-		test('should create a new folder ', done => {
-			fileUtils.createFolder(testPath).then(pathResolved => {
-				assert.strictEqual(pathResolved.dirPath, testPath.dirPath);
-				assert.strictEqual(fs.existsSync(testPath.dirPath), true);
-				checkIfTestFolderExistsAndDelete();
-				done();
-			});
-		});
+    const fileUtils = new FileUtils();
 
-		test('should alert if folder already exists', done => {
-			fileUtils.createFolder(testPath).then(
-				pathResolved => {
-					fileUtils.createFolder(testPath).then(
-						pathResolved => {
-							checkIfTestFolderExistsAndDelete();
-							done();
-						},
-						err => {
-							assert.strictEqual(err, 'Folder already exists');
-							checkIfTestFolderExistsAndDelete();
-							done();
-						}
-					);
-				},
-				err => {
-					handleError(err);
-					done();
-				}
-			);
-		});
+    test('should create a new folder ', done => {
+      fileUtils.createFolder(testPath).then(pathResolved => {
+        assert.strictEqual(pathResolved.dirPath, testPath.dirPath);
+        assert.strictEqual(fs.existsSync(testPath.dirPath), true);
+        checkIfTestFolderExistsAndDelete();
+        done();
+      });
+    });
 
-		test('should create a folder and file', done => {
-			fileUtils.createFolder(testPath).then(pathResolved => {
-				fileUtils
-					.createFiles(pathResolved, fileNames)
-					.then(folderName => {
-						assert.strictEqual(folderName, testPath.dirPath);
-						assert.strictEqual(fs.existsSync(testPath.dirPath), true);
-						fs.readdir(testPath.dirPath,
-							(err, files) => {
-								assert.strictEqual(files.length, 1);
-								checkIfTestFolderExistsAndDelete();
-								done();
-							}
-						);
-					})
-					.catch(err => {
-						handleError(err);
-						done();
-					});
-			});
-		});
-	});
+    test('should alert if folder already exists', done => {
+      fileUtils.createFolder(testPath).then(
+        pathResolved => {
+          fileUtils.createFolder(testPath).then(
+            pathResolved => {
+              checkIfTestFolderExistsAndDelete();
+              done();
+            },
+            err => {
+              assert.strictEqual(err, 'Folder already exists');
+              checkIfTestFolderExistsAndDelete();
+              done();
+            }
+          );
+        },
+        err => {
+          handleError(err);
+          done();
+        }
+      );
+    });
+
+    test('should create a folder and file', done => {
+      fileUtils.createFolder(testPath).then(pathResolved => {
+        fileUtils
+          .createFiles(pathResolved, fileNames)
+          .then(folderName => {
+            assert.strictEqual(folderName, testPath.dirPath);
+            assert.strictEqual(fs.existsSync(testPath.dirPath), true);
+            fs.readdir(testPath.dirPath, (err, files) => {
+              assert.strictEqual(files.length, 1);
+              checkIfTestFolderExistsAndDelete();
+              done();
+            });
+          })
+          .catch(err => {
+            handleError(err);
+            done();
+          });
+      });
+    });
+  });
 });
 
 function checkIfTestFolderExistsAndDelete(done?: MochaDone) {
-	let fullTestPathFolder = path.join(__dirname, 'store');
-	if (fs.exists(fullTestPathFolder) || fullTestPathFolder !== '/') {
-		rimraf(fullTestPathFolder, () => {
-			if (done) done();
-		});
-	}
+  let fullTestPathFolder = path.join(__dirname, 'store');
+  if (fs.exists(fullTestPathFolder) || fullTestPathFolder !== '/') {
+    rimraf(fullTestPathFolder, () => {
+      if (done) done();
+    });
+  }
 }
 
 function handleError(error) {
-	checkIfTestFolderExistsAndDelete();
-	console.log(error);
+  checkIfTestFolderExistsAndDelete();
+  console.log(error);
 }
