@@ -54,7 +54,7 @@
 		"snippets": [
 			{
 				"language": "typescript",
-				"path": "./snippets/ngrx/util.json"
+				"path": "./src/snippets/ngrx/util.json"
 			}
 		]
 	},
