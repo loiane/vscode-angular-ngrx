@@ -9,11 +9,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 
-const testPath: IPath = {
-  fileName: 'util',
-  dirName: 'store',
-  dirPath: __dirname
-};
 const storeDirPath = path.join(__dirname, 'store');
 
 suite('NgrxCli Tests', () => {
@@ -25,13 +20,14 @@ suite('NgrxCli Tests', () => {
   });
 
   test('should create util.ts file', done => {
+    const testPath = getIPath();
     ngrxCli.generateUtil(testPath).then(
       () => {
-        assert.strictEqual(fs.existsSync(storeDirPath), true);
-        fs.readdir(storeDirPath, (err, files) => {
+        assert.strictEqual(fs.existsSync(testPath.dirName), true);
+        fs.readdir(testPath.dirName, (err, files) => {
           assert.strictEqual(files.length, 1);
           fs.readFile(
-            path.join(storeDirPath, `${testPath.fileName}.ts`),
+            path.join(testPath.dirName, `${testPath.fileName}.ts`),
             'utf8',
             (err, contents) => {
               assert.strictEqual(contents, fc.utilContent());
@@ -48,30 +44,35 @@ suite('NgrxCli Tests', () => {
     );
   });
 
-  test('should create util.ts file 2', done => {
-    console.log('should create util.ts file');
-    done();
-  });
-
-  /*test('should create feature store files', done => {
-      ngrxCli.generateFeatureStore(testPath).then(
-        () => {
-          assert.strictEqual(fs.existsSync(storeDirPath), true);
-          fs.readdir(storeDirPath, (err, files) => {
-              files.map(file => path.join(storeDirPath, file))
-              .forEach(file => console.log(file));
-            assert.strictEqual(files.length, 6);
-            checkIfStoreFolderExistsAndDelete();
-            done();
-          });
-        },
-        err => {
-          handleError(err);
+  test('should create feature store files', done => {
+    const testPath = getIPath();
+    ngrxCli.generateFeatureStore(testPath).then(
+      () => {
+        assert.strictEqual(fs.existsSync(testPath.dirName), true);
+        fs.readdir(testPath.dirName, (err, files) => {
+          files
+            .map(file => path.join(testPath.dirName, file))
+            .forEach(file => console.log(file));
+          assert.strictEqual(files.length, 6);
+          checkIfStoreFolderExistsAndDelete();
           done();
-        }
-      );
-    });*/
+        });
+      },
+      err => {
+        handleError(err);
+        done();
+      }
+    );
+  });
 });
+
+function getIPath() {
+  return {
+    fileName: '',
+    dirName: 'store',
+    dirPath: __dirname
+  };
+}
 
 function checkIfStoreFolderExistsAndDelete(done?: MochaDone) {
   if (fs.exists(storeDirPath) || storeDirPath !== '/') {
