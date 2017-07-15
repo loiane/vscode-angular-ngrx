@@ -20,30 +20,37 @@ suite('NgrxCli Tests', () => {
   const ngrxCli = new NgrxCli();
   const fc = new FileContents();
 
-  suite('generating util.ts files...', () => {
+  suite('generating util.ts file...', () => {
     suiteTeardown(done => {
       checkIfStoreFolderExistsAndDelete(done);
     });
 
-    test('should create util.ts file', done => {
+    test('should create store folder', done => {
       ngrxCli.generateUtil(testPath).then(
         () => {
           assert.strictEqual(fs.existsSync(storeDirPath), true);
-          fs.readdir(storeDirPath, (err, files) => {
-            assert.strictEqual(files.length, 1);
-            fs.readFile(
-              path.join(storeDirPath, `${testPath.fileName}.ts`),
-              'utf8',
-              (err, contents) => {
-                assert.strictEqual(contents, fc.utilContent());
-                checkIfStoreFolderExistsAndDelete();
-                done();
-              }
-            );
-          });
+          done();
         },
         err => {
           handleError(err);
+          done();
+        }
+      );
+    });
+
+    test('should create util.ts file', done => {
+      fs.readdir(storeDirPath, (err, files) => {
+        assert.strictEqual(files.length, 1);
+      });
+      done();
+    });
+
+    test('should have the content of util.ts', done => {
+      fs.readFile(
+        path.join(storeDirPath, `${testPath.fileName}.ts`),
+        'utf8',
+        (err, contents) => {
+          assert.strictEqual(contents, fc.utilContent());
           done();
         }
       );
