@@ -44,7 +44,7 @@ suite('NgrxCli Tests', () => {
     );
   });*/
 
-  test('should create feature store files', done => {
+  /*test('should create feature store files', done => {
     const testPath = getIPath();
     ngrxCli.generateFeatureStore(testPath).then(
       () => {
@@ -63,7 +63,7 @@ suite('NgrxCli Tests', () => {
         done();
       }
     );
-  });
+  });*/
 });
 
 function getIPath() {
