@@ -19,7 +19,7 @@ suite('NgrxCli Tests', () => {
     checkIfStoreFolderExistsAndDelete(done);
   });
 
-  test('should create util.ts file', done => {
+  /*test('should create util.ts file', done => {
     const testPath = getIPath();
     ngrxCli.generateAppStoreFolder(testPath).then(
       () => {
@@ -42,7 +42,7 @@ suite('NgrxCli Tests', () => {
         done();
       }
     );
-  });
+  });*/
 
   test('should create feature store files', done => {
     const testPath = getIPath();
