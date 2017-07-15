@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
 		'extension.addNgRxUtil': {
 			template: 'util',
 			fileName: 'util.ts',
-			callback: ngrxCli.generateUtil
+			callback: ngrxCli.generateAppStoreFolder
 		},
 		'extension.addNgRxFeatureStore': {
 			template: 'feature store',

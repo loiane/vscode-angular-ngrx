@@ -21,7 +21,7 @@ suite('NgrxCli Tests', () => {
 
   test('should create util.ts file', done => {
     const testPath = getIPath();
-    ngrxCli.generateUtil(testPath).then(
+    ngrxCli.generateAppStoreFolder(testPath).then(
       () => {
         assert.strictEqual(fs.existsSync(testPath.dirName), true);
         fs.readdir(testPath.dirName, (err, files) => {

@@ -76,25 +76,34 @@ export class NgrxCli {
   }
 
   private getLoc(loc: IPath) {
-    return loc
-      ? loc
-      : {
-          fileName: '',
-          dirName: '',
-          dirPath: ''
-        };
-  }
-
-  public generateUtil = async (loc?: IPath) => {
-    loc = this.getLoc(loc);
-    loc.fileName = 'util';
     loc.dirName = this.DIR_NAME;
     loc.dirPath = path.join(loc.dirPath, loc.dirName);
+    return loc;
+  }
+
+  public generateAppStoreFolder = async (loc: IPath) => {
+    loc = this.getLoc(loc);
 
     var files: IFiles[] = [
       {
-        name: path.join(loc.dirPath, `${loc.fileName}.ts`),
+        name: path.join(loc.dirPath, 'util.ts'),
         content: this.fc.utilContent()
+      },
+      {
+        name: path.join(loc.dirPath, 'action-creator.ts'),
+        content: this.fc.appActionCreatorContent()
+      },
+      {
+        name: path.join(loc.dirPath, 'app-store.module.ts'),
+        content: this.fc.featureAppSotreModuleContent()
+      },
+      {
+        name: path.join(loc.dirPath, 'app-state.ts'),
+        content: this.fc.appStateContent()
+      },
+      {
+        name: path.join(loc.dirPath, 'store.service.ts'),
+        content: this.fc.appStoreServiceContent()
       }
     ];
 
@@ -102,15 +111,13 @@ export class NgrxCli {
     await this.fileUtils.createFiles(loc, files);
   };
 
-  public generateFeatureStore = async (loc?: IPath) => {
+  public generateFeatureStore = async (loc: IPath) => {
     loc = this.getLoc(loc);
-    loc.dirName = this.DIR_NAME;
-    loc.dirPath = path.join(loc.dirPath, loc.dirName);
 
     var files: IFiles[] = [
       {
         name: path.join(loc.dirPath, `${loc.fileName}.actions.ts`),
-        content: this.fc.featureStateContent(loc.fileName)
+        content: this.fc.featureActionsContent(loc.fileName)
       },
       {
         name: path.join(loc.dirPath, `${loc.fileName}.state.ts`),
@@ -118,19 +125,19 @@ export class NgrxCli {
       },
       {
         name: path.join(loc.dirPath, `${loc.fileName}.reducer.ts`),
-        content: this.fc.featureStateContent(loc.fileName)
+        content: this.fc.featureReducerContent(loc.fileName)
       },
       {
         name: path.join(loc.dirPath, `${loc.fileName}.effects.ts`),
-        content: this.fc.featureStateContent(loc.fileName)
+        content: this.fc.featureEffectsContent(loc.fileName)
       },
       {
         name: path.join(loc.dirPath, `${loc.fileName}-store.service.ts`),
-        content: this.fc.featureStateContent(loc.fileName)
+        content: this.fc.featureStoreServiceContent(loc.fileName)
       },
       {
         name: path.join(loc.dirPath, `${loc.fileName}-store.module.ts`),
-        content: this.fc.featureStateContent(loc.fileName)
+        content: this.fc.featureStoreModuleContent(loc.fileName)
       }
     ];
 
