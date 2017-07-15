@@ -125,7 +125,11 @@ export class NgrxCli {
         content: this.fc.featureStateContent(loc.fileName)
       },
       {
-        name: path.join(loc.dirPath, `${loc.fileName}.store.service.ts`),
+        name: path.join(loc.dirPath, `${loc.fileName}-store.service.ts`),
+        content: this.fc.featureStateContent(loc.fileName)
+      },
+      {
+        name: path.join(loc.dirPath, `${loc.fileName}-store.module.ts`),
         content: this.fc.featureStateContent(loc.fileName)
       }
     ];

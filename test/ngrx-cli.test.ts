@@ -17,13 +17,13 @@ const testPath: IPath = {
 const storeDirPath = path.join(__dirname, 'store');
 
 suite('NgrxCli Tests', () => {
-  suite('generating ngrx files...', () => {
+  const ngrxCli = new NgrxCli();
+  const fc = new FileContents();
+
+  suite('generating util.ts files...', () => {
     suiteTeardown(done => {
       checkIfStoreFolderExistsAndDelete(done);
     });
-
-    const ngrxCli = new NgrxCli();
-    const fc = new FileContents();
 
     test('should create util.ts file', done => {
       ngrxCli.generateUtil(testPath).then(
@@ -48,6 +48,25 @@ suite('NgrxCli Tests', () => {
         }
       );
     });
+
+    /*test('should create feature store files', done => {
+      ngrxCli.generateFeatureStore(testPath).then(
+        () => {
+          assert.strictEqual(fs.existsSync(storeDirPath), true);
+          fs.readdir(storeDirPath, (err, files) => {
+              files.map(file => path.join(storeDirPath, file))
+              .forEach(file => console.log(file));
+            assert.strictEqual(files.length, 6);
+            checkIfStoreFolderExistsAndDelete();
+            done();
+          });
+        },
+        err => {
+          handleError(err);
+          done();
+        }
+      );
+    });*/
   });
 });
 
