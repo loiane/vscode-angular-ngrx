@@ -1,9 +1,10 @@
 {
 	"name": "angular-ngrx",
 	"displayName": "Angular Ngrx",
-	"description": "Quickly scaffold ngrx file templates snippets",
+	"description": "Quickly scaffold ngrx file templates + snippets",
 	"version": "0.0.1",
 	"publisher": "loiane",
+	"icon": "images/angular-ngrx-logo.png",
 	"engines": {
 		"vscode": "^1.12.0"
 	},

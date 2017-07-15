@@ -1,65 +1,127 @@
-# angular-ngrx README
+# VS Code Angular ngRx
 
-This is the README for your extension "angular-ngrx". After writing up a brief description, we recommend including the following sections.
+This extension allows **quickly scaffold ngRx file templates** (actions, reducers, effects and more) in VS Code Angular project based on @ngrx/platform (v4+).
+
+Snippets based on previous versions of @ngrx/store are also available.
+
+### Sample project
+
+The following project had all ngRx files created with this extension: [link](github.com/loiane/angular-ngrx4-lazy-loading).
+
+The sample project is organized in modules and uses lazy loading to ngrx as well. Based on ngrx/plataform (ngrx v4), which allows lazy loading of ngrx functionalities.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+You can find the following options been added to the context menu:
 
-For example if there is an image subfolder under your extension project workspace:
+Menu Options  |
+---           | 
+New ngrx app/store module|
+New ngrx featue/store module| 
 
-\!\[feature X\]\(images/feature-x.png\)
+### Generate app/store directory + files 
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Right click on `app` folder in your current project to generate the `app-store.module`.
+This command will generate the following files:
 
-## Requirements
+* `actions-creator.ts`
+* `app-state.ts`
+* `app-store.module.ts`
+* `store.service.ts`
+* `util.ts`
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+This extension creates a `app-store.module` with util files and also a module to manage the app state for the root level. This module needs to be imported in the `app.module` and all setup is completed!
 
-## Extension Settings
+### Generate app/feature-module/store directory + files 
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Right click on `app/feature-module` folder in your current project to generate the `feature-store.module`. You will be prompted to enter the feature name.
+This command will generate the following files:
 
-For example:
+* `feature-store.module.ts`
+* `feature-store.service.ts`
+* `feature.actions.ts`
+* `feature.effects.ts`
+* `feature.reducer.ts`
+* `feature.state.ts`
 
-This extension contributes the following settings:
+This extension creates a `feature-store.module` with actions, reducer file, feature-state, effects. The module contains the required setup for ngrx for a feature-module (lazy loaded). A `feature-store.service` is also created to organize `store.select` and `store.displach` logic (the service can be injected into a component to retrieve and dispatch the actions as needed). RxJS is used for selecting the state instead of `reselect`. Sample code for CRUD operations already included. Just needs to be imported in your `feature.module`. 
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+## Snippets - Usage
 
-## Known Issues
+Create a new typescript file and type `ngrx-` to see the snippets available. Press `enter`, and the snippet unfolds.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### ngRx Actions Snippets
+Trigger | Description
+--- | ---
+ngrx-action-file| Accordion
+ngrx-action-class | Accordion
+ngrx-action-type | Accordion
+ngrx-action-function  | Accordion
+ngrx-action-factory| Accordion
+
+### ngRx Reducer Snippets
+Trigger | Description
+--- | ---
+ngrx-reducer-file| Accordion
+ngrx-reducer-feature-file | Accordion
+ngrx-reducer-case | Accordion
+
+### ngRx Selector Snippets
+Trigger | Description
+--- | ---
+ngrx-selector-file| Accordion
+ngrx-selector | Accordion
+
+### ngRx Effects Snippets
+Trigger | Description
+--- | ---
+ngrx-effects-file| Accordion
+ngrx-effect | Accordion
+
+### ngRx State Snippets
+Trigger | Description
+--- | ---
+ngrx-state-app| Accordion
+ngrx-state-feature| Accordion
+
+### ngRx Setup
+Trigger | Description
+--- | ---
+ngrx-setup-store-root| Accordion
+ngrx-setup-store-feature| Accordion
+ngrx-setup-effects-root| Accordion
+ngrx-setup-effects-feature| Accordion
+ngrx-setup-devtools| Accordion
+
+### ngRx Other Files
+Trigger | Description
+--- | ---
+ngrx-util| Accordion
+ngrx-store-service| Accordion
+
+## Installation
+
+1. Install Visual Studio Code 1.5.0 or higher
+2. Launch Code
+3. From the command palette `Ctrl`-`Shift`-`P` (Windows, Linux) or `Cmd`-`Shift`-`P` (OSX)
+4. Select `Install Extension`
+5. Type `angular ngrx` and press enter
+6. Reload Visual Studio Code
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+See the [CHANGELOG](CHANGELOG.md) for the latest changes.
 
-### 1.0.0
+## Disclaimer
 
-Initial release of ...
+**Important:** This extension due to the nature of it's purpose will create
+files on your hard drive and if necessary create the respective folder structure.
+While it should not override any files during this process, I'm not giving any guarantees
+or take any responsibility in case of lost data. 
+Always use version control!
 
-### 1.0.1
+## License
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+MIT
 
 **Enjoy!**
