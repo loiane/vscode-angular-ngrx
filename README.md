@@ -1,6 +1,11 @@
 # VS Code Angular ngRx
 
-This extension allows **quickly scaffold ngRx file templates** (actions, reducers, effects and more) in VS Code Angular project based on @ngrx/platform (v4+).
+[![Version](http://vsmarketplacebadge.apphb.com/version/loiane.angular-ngrx.svg)](https://marketplace.visualstudio.com/items?itemName=loiane.angular-ngrx)
+[![Installs](http://vsmarketplacebadge.apphb.com/installs/loiane.angular-ngrx.svg)](https://marketplace.visualstudio.com/items?itemName=loiane.angular-ngrx)
+[![Build Status](https://travis-ci.org/loiane/vscode-angular-ngrx.svg?branch=master)](https://travis-ci.org/loiane/vscode-angular-ngrx)
+[![codecov](https://codecov.io/gh/loiane/vscode-angular-ngrx/branch/master/graph/badge.svg)](https://codecov.io/gh/loiane/vscode-angular-ngrx)
+
+This extension allows **quickly scaffolding ngRx file templates** (actions, reducers, effects and more) in VS Code Angular project based on @ngrx/platform (v4+).
 
 Snippets based on previous versions of @ngrx/store are also available.
 
@@ -17,7 +22,7 @@ You can find the following options been added to the context menu:
 Menu Options  |
 ---           | 
 New ngrx app/store module|
-New ngrx featue/store module| 
+New ngrx feature/store module| 
 
 ### Generate app/store directory + files 
 
