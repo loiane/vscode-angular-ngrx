@@ -11,8 +11,8 @@
     "lint": {
       "engine": "tslint"
     },
-    "wc": {
-      "limit": 500
+    "wc": { 
+      "limit": 1000 
     }
   }
 }
