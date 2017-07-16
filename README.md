@@ -1,5 +1,7 @@
 # VS Code Angular ngRx
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/loiane/vscode-angular-ngrx.svg)](https://greenkeeper.io/)
+
 [![Version](http://vsmarketplacebadge.apphb.com/version/loiane.angular-ngrx.svg)](https://marketplace.visualstudio.com/items?itemName=loiane.angular-ngrx)
 [![Installs](http://vsmarketplacebadge.apphb.com/installs/loiane.angular-ngrx.svg)](https://marketplace.visualstudio.com/items?itemName=loiane.angular-ngrx)
 [![Build Status](https://travis-ci.org/loiane/vscode-angular-ngrx.svg?branch=master)](https://travis-ci.org/loiane/vscode-angular-ngrx)
