@@ -77,7 +77,7 @@ function getIPath() {
 function checkIfStoreFolderExistsAndDelete(done?: MochaDone) {
   if (fs.exists(storeDirPath) || storeDirPath !== '/') {
     rimraf(storeDirPath, () => {
-      if (done) { done() }
+      if (done) { done(); }
     });
   }
 }
