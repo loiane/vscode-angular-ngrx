@@ -47,7 +47,7 @@ export class NgrxCli {
 
     await this.fileUtils.createFolder(loc);
     await this.fileUtils.createFiles(loc, files);
-  };
+  }
 
   public generateFeatureStore = async (loc: IPath) => {
     loc = this.getLoc(loc);
@@ -56,5 +56,5 @@ export class NgrxCli {
 
     await this.fileUtils.createFolder(loc);
     await this.fileUtils.createFiles(loc, files);
-  };
+  }
 }

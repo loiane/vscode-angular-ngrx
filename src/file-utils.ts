@@ -51,6 +51,6 @@ export class FileUtils {
   }
 
   public static getFileName(loc: IPath, fileName: string): string {
-    return path.join(loc.dirPath, fileName)
+    return path.join(loc.dirPath, fileName);
   }
 }
