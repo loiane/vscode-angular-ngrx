@@ -4,6 +4,7 @@
 	"description": "Quickly scaffold ngrx file templates + snippets",
 	"version": "0.0.1",
 	"publisher": "loiane",
+	"license": "MIT",
 	"icon": "images/angular-ngrx-logo.png",
 	"engines": {
 		"vscode": "^1.12.0"
@@ -24,9 +25,16 @@
 		"TypeScript",
 		"Templates"
 	],
-	"categories": ["Other", "Languages", "Snippets"],
-	"activationEvents": ["*"],
+	"categories": [
+		"Other",
+		"Languages",
+		"Snippets"
+	],
+	"activationEvents": [
+		"*"
+	],
 	"main": "./out/src/extension",
+	"preview": true,
 	"contributes": {
 		"commands": [
 			{
@@ -63,13 +71,18 @@
 		"vscode:prepublish": "tsc -p ./",
 		"compile": "tsc -watch -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "node ./node_modules/vscode/bin/test"
+		"test": "node ./node_modules/vscode/bin/test",
+		"lint": "tslint --project tsconfig.json",
+		"analysis": "bithound check git@github.com:loiane/vscode-angular-ngrx.git"
 	},
 	"devDependencies": {
-		"typescript": "^2.0.3",
-		"vscode": "^1.0.0",
-		"mocha": "^2.3.3",
+		"@types/mocha": "^2.2.32",
 		"@types/node": "^6.0.40",
-		"@types/mocha": "^2.2.32"
+		"bithound": "^1.7.0",
+		"codecov": "^2.2.0",
+		"mocha": "^2.3.3",
+		"tslint": "^5.5.0",
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0"
 	}
 }

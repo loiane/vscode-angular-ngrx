@@ -1,0 +1,39 @@
+{
+  "extends": ["tslint:latest"],
+  "rules": {
+    "arrow-return-shorthand": true,
+    "callable-types": true,
+    "class-name": true,
+    "comment-format": [true, "check-space"],
+    "curly": true,
+    "eofline": true,
+    "import-spacing": true,
+    "no-var-keyword": true,
+    "prefer-const": true,
+    "quotemark": [true, "single"],
+    "semicolon": ["always"],
+    "max-line-length": [true, 140],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-pascal-case",
+      "allow-leading-underscore"
+    ],
+    "space-before-function-paren": [
+      true,
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always",
+        "method": "never",
+        "constructor": "never"
+      }
+    ],
+    "object-literal-sort-keys": false,
+    "no-string-literal": false,
+    "ordered-imports": [false],
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "no-console": [true, "log", "debug", "info", "warn"]
+  }
+}
