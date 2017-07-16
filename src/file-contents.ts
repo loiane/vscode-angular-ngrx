@@ -1,23 +1,8 @@
+import { TemplateUtils } from './templates/template-utils';
 import * as fs from 'fs';
 import * as path from 'path';
 
 export class FileContents {
-  private camelCase(input: string): string {
-    return input.replace(/-([a-z])/gi, (all, letter) => letter.toUpperCase());
-  }
-
-  private getInputNameCamelCase(inputName): string {
-    let inputUpperCase: string;
-    inputUpperCase = inputName.charAt(0).toUpperCase() + inputName.slice(1);
-    return this.camelCase(inputUpperCase);
-  }
-
-  private getInputFeatureName(inputName): string {
-    let inputUpperCase: string;
-    inputUpperCase = inputName.charAt(0) + inputName.slice(1);
-    return this.camelCase(inputUpperCase);
-  }
-
   public utilContent(): string {
     return `/**
  * This function coerces a string into a string literal type.
@@ -41,8 +26,8 @@ export function type<T>(label: T | ''): T {
   }
 
   public featureStateContent(inputName: string): string {
-    const inputUpperCase = this.getInputNameCamelCase(inputName);
-    const inputFeatureName = this.getInputFeatureName(inputName);
+    const inputUpperCase = TemplateUtils.getInputNameCamelCase(inputName);
+    const inputFeatureName = TemplateUtils.getInputFeatureName(inputName);
 
     return `export interface ${inputUpperCase}ModuleState {
   ${inputFeatureName}: ${inputUpperCase}State;
@@ -64,8 +49,8 @@ export const ${inputFeatureName}InitialState: ${inputUpperCase}State = {
   }
 
   public featureActionsContent(inputName: string): string {
-    const inputUpperCase = this.getInputNameCamelCase(inputName);
-    const inputFeatureName = this.getInputFeatureName(inputName);
+    const inputUpperCase = TemplateUtils.getInputNameCamelCase(inputName);
+    const inputFeatureName = TemplateUtils.getInputFeatureName(inputName);
 
     return `import { Injectable } from '@angular/core';
 import { ActionCreator } from '../../store/action-creator';
@@ -107,8 +92,8 @@ export class ${inputUpperCase}Actions {
   }
 
   public featureReducerContent(inputName: string): string {
-    const inputUpperCase = this.getInputNameCamelCase(inputName);
-    const inputFeatureName = this.getInputFeatureName(inputName);
+    const inputUpperCase = TemplateUtils.getInputNameCamelCase(inputName);
+    const inputFeatureName = TemplateUtils.getInputFeatureName(inputName);
 
     return `import { Action } from '@ngrx/store';
 import { ${inputUpperCase}State, ${inputFeatureName}InitialState } from './${inputName}.state';
@@ -174,8 +159,8 @@ export function ${inputFeatureName}Reducer(
   }
 
   public featureEffectsContent(inputName: string): string {
-    const inputUpperCase = this.getInputNameCamelCase(inputName);
-    const inputFeatureName = this.getInputFeatureName(inputName);
+    const inputUpperCase = TemplateUtils.getInputNameCamelCase(inputName);
+    const inputFeatureName = TemplateUtils.getInputFeatureName(inputName);
 
     return `import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
@@ -201,51 +186,51 @@ export class ${inputUpperCase}Effects {
   ) {}
 
   @Effect()
-  loadAction$: Observable<Action> = this.actions$
+  loadAction$: Observable<Action> = TemplateUtils.actions$
     .ofType(${inputUpperCase}Actions.Types.LOAD)
-    .map(this.toPayload)
+    .map(TemplateUtils.toPayload)
     .switchMap(payload =>
-      this.api
+      TemplateUtils.api
         .load()
-        .map(res => this.actions.loadSuccessAction(res))
-        .catch(this.handleError)
+        .map(res => TemplateUtils.actions.loadSuccessAction(res))
+        .catch(TemplateUtils.handleError)
     );
 
   @Effect()
-  createAction$: Observable<Action> = this.actions$
+  createAction$: Observable<Action> = TemplateUtils.actions$
     .ofType(${inputUpperCase}Actions.Types.CREATE)
-    .map(this.toPayload)
+    .map(TemplateUtils.toPayload)
     .switchMap(payload =>
-      this.api
+      TemplateUtils.api
         .create(payload)
-        .map(res => this.actions.createSuccessAction(res))
-        .catch(this.handleError)
+        .map(res => TemplateUtils.actions.createSuccessAction(res))
+        .catch(TemplateUtils.handleError)
     );
 
   @Effect()
-  updateAction$: Observable<Action> = this.actions$
+  updateAction$: Observable<Action> = TemplateUtils.actions$
     .ofType(${inputUpperCase}Actions.Types.UPDATE)
-    .map(this.toPayload)
+    .map(TemplateUtils.toPayload)
     .switchMap(payload =>
-      this.api
+      TemplateUtils.api
         .update(payload)
-        .map(res => this.actions.updateSuccessAction(res))
-        .catch(this.handleError)
+        .map(res => TemplateUtils.actions.updateSuccessAction(res))
+        .catch(TemplateUtils.handleError)
     );
 
   @Effect()
-  removeAction$: Observable<Action> = this.actions$
+  removeAction$: Observable<Action> = TemplateUtils.actions$
     .ofType(${inputUpperCase}Actions.Types.REMOVE)
-    .map(this.toPayload)
+    .map(TemplateUtils.toPayload)
     .switchMap(payload =>
-      this.api
+      TemplateUtils.api
         .remove(payload.id)
-        .map(res => this.actions.removeSuccessAction())
-        .catch(this.handleError)
+        .map(res => TemplateUtils.actions.removeSuccessAction())
+        .catch(TemplateUtils.handleError)
     );
 
   private handleError(error) {
-    return Observable.of(this.actions.errorAction);
+    return Observable.of(TemplateUtils.actions.errorAction);
   }
 
   private toPayload(action) {
@@ -256,8 +241,8 @@ export class ${inputUpperCase}Effects {
   }
 
   public featureStoreServiceContent(inputName: string): string {
-    const inputUpperCase = this.getInputNameCamelCase(inputName);
-    const inputFeatureName = this.getInputFeatureName(inputName);
+    const inputUpperCase = TemplateUtils.getInputNameCamelCase(inputName);
+    const inputFeatureName = TemplateUtils.getInputFeatureName(inputName);
 
     return `import { ${inputUpperCase}State } from './${inputName}.state';
 import { Injectable } from '@angular/core';
@@ -277,47 +262,47 @@ export class ${inputUpperCase}StoreService extends StoreService {
   ) { super(); }
 
   dispatchLoadAction() {
-    this.dispatchAction(this.actions.loadAction());
+    TemplateUtils.dispatchAction(TemplateUtils.actions.loadAction());
   }
 
   dispatchCreateAction(record: any) {
-    this.store.dispatch(this.actions.createAction(record));
+    TemplateUtils.store.dispatch(TemplateUtils.actions.createAction(record));
   }
 
   dispatchUpdateAction(record: any)  {
-    this.store.dispatch(this.actions.updateAction(record));
+    TemplateUtils.store.dispatch(TemplateUtils.actions.updateAction(record));
   }
 
   dispatchRemoveAction(id) {
-    this.store.dispatch(this.actions.removeAction(id));
+    TemplateUtils.store.dispatch(TemplateUtils.actions.removeAction(id));
   }
 
   //sample of how to select piece of the state
   get${inputUpperCase}s() {
-    return this.storeSelect${inputUpperCase}State()
+    return TemplateUtils.storeSelect${inputUpperCase}State()
       .map((state: ${inputUpperCase}State) => state.${inputFeatureName}s);
   }
 
   getIsLoading() {
-    return this.storeSelect${inputUpperCase}State()
+    return TemplateUtils.storeSelect${inputUpperCase}State()
       .map((state: ${inputUpperCase}State) => state.isLoading);
   }
 
   getError() {
-    return this.storeSelect${inputUpperCase}State()
+    return TemplateUtils.storeSelect${inputUpperCase}State()
       .map((state: ${inputUpperCase}State) => state.error);
   }
 
   findById(record: {id}){
-    return this.get${inputUpperCase}s()
+    return TemplateUtils.get${inputUpperCase}s()
       .filter(item => item.id === record.id);
   }
 }`;
   }
 
   public featureStoreModuleContent(inputName: string): string {
-    const inputUpperCase = this.getInputNameCamelCase(inputName);
-    const inputFeatureName = this.getInputFeatureName(inputName);
+    const inputUpperCase = TemplateUtils.getInputNameCamelCase(inputName);
+    const inputFeatureName = TemplateUtils.getInputFeatureName(inputName);
 
     return `import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
@@ -414,11 +399,11 @@ export abstract class StoreService {
   protected store: Store<AppState>;
 
   protected storeSelectFeatureState() {
-    return this.store.select(this.STATE);
+    return TemplateUtils.store.select(TemplateUtils.STATE);
   }
 
   protected dispatchAction(action: Action) {
-    this.store.dispatch(action);
+    TemplateUtils.store.dispatch(action);
   }
 
   /* in case you need to handle CRUD actions in all services
