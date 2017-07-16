@@ -8,6 +8,7 @@
 [![bitHound Code](https://www.bithound.io/github/loiane/vscode-angular-ngrx/badges/code.svg)](https://www.bithound.io/github/loiane/vscode-angular-ngrx)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/loiane/vscode-angular-ngrx/badges/devDependencies.svg)](https://www.bithound.io/github/loiane/vscode-angular-ngrx/master/dependencies/npm)
 [![Greenkeeper badge](https://badges.greenkeeper.io/loiane/vscode-angular-ngrx.svg)](https://greenkeeper.io/)
+[![Known Vulnerabilities](https://snyk.io/test/github/loiane/vscode-angular-ngrx/badge.svg)](https://snyk.io/test/github/loiane/vscode-angular-ngrx)
 
 This extension allows **quickly scaffolding ngRx file templates** (actions, reducers, effects and more) in VS Code Angular project based on @ngrx/platform (v4+).
 
