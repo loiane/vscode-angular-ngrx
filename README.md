@@ -4,6 +4,9 @@
 [![Installs](http://vsmarketplacebadge.apphb.com/installs/loiane.angular-ngrx.svg)](https://marketplace.visualstudio.com/items?itemName=loiane.angular-ngrx)
 [![Build Status](https://travis-ci.org/loiane/vscode-angular-ngrx.svg?branch=master)](https://travis-ci.org/loiane/vscode-angular-ngrx)
 [![codecov](https://codecov.io/gh/loiane/vscode-angular-ngrx/branch/master/graph/badge.svg)](https://codecov.io/gh/loiane/vscode-angular-ngrx)
+[![bitHound Overall Score](https://www.bithound.io/github/loiane/vscode-angular-ngrx/badges/score.svg)](https://www.bithound.io/github/loiane/vscode-angular-ngrx)
+[![bitHound Code](https://www.bithound.io/github/loiane/vscode-angular-ngrx/badges/code.svg)](https://www.bithound.io/github/loiane/vscode-angular-ngrx)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/loiane/vscode-angular-ngrx/badges/devDependencies.svg)](https://www.bithound.io/github/loiane/vscode-angular-ngrx/master/dependencies/npm)
 
 This extension allows **quickly scaffolding ngRx file templates** (actions, reducers, effects and more) in VS Code Angular project based on @ngrx/platform (v4+).
 
