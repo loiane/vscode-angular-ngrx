@@ -1,4 +1,4 @@
-import { IFiles } from './../src/models/file';
+/*import { IFiles } from './../src/models/file';
 import { FileUtils } from './../src/file-utils';
 import { IPath } from './../src/models/path';
 import * as myExtension from '../src/extension';
@@ -93,4 +93,4 @@ function checkIfTestFolderExistsAndDelete(done?: MochaDone) {
 function handleError(error) {
   checkIfTestFolderExistsAndDelete();
   console.error(error);
-}
+}*/

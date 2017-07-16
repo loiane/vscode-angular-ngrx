@@ -1,4 +1,4 @@
-import { FileContents } from './../src/file-contents';
+/*import { FileContents } from './../src/file-contents';
 import { NgrxCli } from './../src/ngrx-cli';
 import { IFiles } from './../src/models/file';
 import { IPath } from './../src/models/path';
@@ -64,9 +64,9 @@ suite('NgrxCli Tests', () => {
       }
     );
   });*/
-});
+// });
 
-function getIPath() {
+/* function getIPath() {
   return {
     fileName: '',
     dirName: 'store',
@@ -86,3 +86,4 @@ function handleError(error) {
   checkIfStoreFolderExistsAndDelete();
   console.error(error);
 }
+*/

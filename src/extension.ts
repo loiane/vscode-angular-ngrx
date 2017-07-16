@@ -1,10 +1,12 @@
 'use strict';
 import { NgrxCli } from './ngrx-cli';
 import { ExtensionContext, commands, window, workspace } from 'vscode';
+import { VsCodePrompt } from './vs-code-prompt';
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
   const ngrxCli = new NgrxCli();
+  const vsCodePrompt = new VsCodePrompt();
 
   const commandsMap = {
     'extension.addNgRxUtil': {
@@ -20,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
   };
 
   const showDynamicDialog = (args, template, fileName, callback) => {
-    ngrxCli
+    vsCodePrompt
       .showFileNameDialog(args, template, fileName)
       .then(loc => callback(loc))
       .catch(err => window.showErrorMessage(err));
