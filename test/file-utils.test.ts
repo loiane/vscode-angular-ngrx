@@ -85,7 +85,7 @@ function checkIfTestFolderExistsAndDelete(done?: MochaDone) {
   const fullTestPathFolder = path.join(__dirname, 'store');
   if (fs.exists(fullTestPathFolder) || fullTestPathFolder !== '/') {
     rimraf(fullTestPathFolder, () => {
-      if (done) { done() };
+      if (done) { done() }
     });
   }
 }

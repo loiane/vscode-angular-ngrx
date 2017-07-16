@@ -18,7 +18,8 @@ export class FileContents {
     return this.camelCase(inputUpperCase);
   }
 
-  public utilContent = () => `/**
+  public utilContent(): string {
+    return `/**
  * This function coerces a string into a string literal type.
  * Using tagged union types in TypeScript 2.0, this enables
  * powerful typechecking of our reducers.
@@ -37,6 +38,7 @@ export function type<T>(label: T | ''): T {
 
   return <T>label;
 }`;
+  }
 
   public featureStateContent(inputName: string): string {
     const inputUpperCase = this.getInputNameCamelCase(inputName);
