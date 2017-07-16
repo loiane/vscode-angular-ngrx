@@ -11,13 +11,13 @@ import * as rimraf from 'rimraf';
 const testPath: IPath = {
   fileName: 'util.ts',
   dirName: 'store',
-  dirPath: path.join(__dirname, 'store')
+  dirPath: path.join(__dirname, 'store'),
 };
 const fileNames: IFiles[] = [
   {
     name: path.join(testPath.dirPath, testPath.fileName),
-    content: 'let myVar = 1;'
-  }
+    content: 'let myVar = 1;',
+  },
 ];
 
 suite('FileUtils Tests', () => {
@@ -41,7 +41,7 @@ suite('FileUtils Tests', () => {
       fileUtils.createFolder(testPath).then(
         pathResolved => {
           fileUtils.createFolder(testPath).then(
-            pathResolved => {
+            createdFolder => {
               checkIfTestFolderExistsAndDelete();
               done();
             },
@@ -82,15 +82,15 @@ suite('FileUtils Tests', () => {
 });
 
 function checkIfTestFolderExistsAndDelete(done?: MochaDone) {
-  let fullTestPathFolder = path.join(__dirname, 'store');
+  const fullTestPathFolder = path.join(__dirname, 'store');
   if (fs.exists(fullTestPathFolder) || fullTestPathFolder !== '/') {
     rimraf(fullTestPathFolder, () => {
-      if (done) done();
+      if (done) { done() };
     });
   }
 }
 
 function handleError(error) {
   checkIfTestFolderExistsAndDelete();
-  console.log(error);
+  console.error(error);
 }

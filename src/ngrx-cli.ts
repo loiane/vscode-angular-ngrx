@@ -30,7 +30,9 @@ export class NgrxCli {
         }
       }
 
-      var newFolderPath: string = fs.lstatSync(clickedFolderPath).isDirectory()
+      const newFolderPath: string = fs
+        .lstatSync(clickedFolderPath)
+        .isDirectory()
         ? clickedFolderPath
         : path.dirname(clickedFolderPath);
 
@@ -49,21 +51,21 @@ export class NgrxCli {
                   'Please enter a valid name: no whitespaces or special characters'
                 );
               } else {
-                let params = fileName.split(' ');
+                const params = fileName.split(' ');
                 let dirName = '';
                 let dirPath = '';
-                let fullPath = path.join(newFolderPath, fileName);
-                if (fileName.indexOf('\\') != -1) {
-                  let pathParts = fileName.split('\\');
+                const fullPath = path.join(newFolderPath, fileName);
+                if (fileName.indexOf('\\') !== -1) {
+                  const pathParts = fileName.split('\\');
                   dirName = pathParts[0];
                   fileName = pathParts[1];
                 }
                 dirPath = path.join(newFolderPath, dirName);
                 resolve({
-                  fullPath: fullPath,
+                  fullPath,
                   fileName: fileName,
-                  dirName: dirName,
-                  dirPath: dirPath,
+                  dirName,
+                  dirPath,
                   rootPath: newFolderPath,
                   params: []
                 });
@@ -84,7 +86,7 @@ export class NgrxCli {
   public generateAppStoreFolder = async (loc: IPath) => {
     loc = this.getLoc(loc);
 
-    var files: IFiles[] = [
+    const files: IFiles[] = [
       {
         name: path.join(loc.dirPath, 'util.ts'),
         content: this.fc.utilContent()
@@ -103,8 +105,8 @@ export class NgrxCli {
       },
       {
         name: path.join(loc.dirPath, 'store.service.ts'),
-        content: this.fc.appStoreServiceContent()
-      }
+        content: this.fc.appStoreServiceContent(),
+      },
     ];
 
     await this.fileUtils.createFolder(loc);
@@ -114,7 +116,7 @@ export class NgrxCli {
   public generateFeatureStore = async (loc: IPath) => {
     loc = this.getLoc(loc);
 
-    var files: IFiles[] = [
+    const files: IFiles[] = [
       {
         name: path.join(loc.dirPath, `${loc.fileName}.actions.ts`),
         content: this.fc.featureActionsContent(loc.fileName)
@@ -138,7 +140,7 @@ export class NgrxCli {
       {
         name: path.join(loc.dirPath, `${loc.fileName}-store.module.ts`),
         content: this.fc.featureStoreModuleContent(loc.fileName)
-      }
+      },
     ];
 
     await this.fileUtils.createFolder(loc);
