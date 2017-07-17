@@ -6,6 +6,8 @@ node_js:
   #- 6 # vscode > 1.8.1
   #- 6.5.0 # vscode 1.8.1
 
+cache: yarn
+
 before_install:
   - if [ $TRAVIS_OS_NAME == "linux" ]; then
       export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
