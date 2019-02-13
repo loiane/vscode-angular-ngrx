@@ -76,7 +76,7 @@
 		"analysis": "bithound check git@github.com:loiane/vscode-angular-ngrx.git"
 	},
 	"devDependencies": {
-		"@types/mocha": "^2.2.41",
+		"@types/mocha": "^5.2.6",
 		"@types/node": "^8.0.13",
 		"bithound": "^1.7.0",
 		"codecov": "^3.0.0",
